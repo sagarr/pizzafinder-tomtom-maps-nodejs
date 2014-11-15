@@ -1,0 +1,22 @@
+extends layout
+
+block content
+    h1= title
+    #title
+        p Welcome to PizzaFinder
+
+    #map 
+    #myLocation-box
+        input#myLocation-input(type='text', name='My Location' value="18.479361,73.890571")
+        input(type='Button', value='Go', name='GoButton', 
+            onclick='panTo(document.getElementById(\'myLocation-input\').value);')
+        input(type='Button', value='Search Pizzas', name='SearchNearbyPizzaButton', 
+            onclick='findPizza(document.getElementById(\'myLocation-input\').value);')
+        p.error
+
+    script(src='/javascripts/leaflet.js')
+    script(src='/javascripts/tomtom.map.js')
+    script(src='/javascripts/jquery-2.1.1.min.js')
+    script(type='text/javascript').
+        tomtom.apiKey =!{JSON.stringify(key)} 
+    script(src='/javascripts/pizzafinder-client.js')
